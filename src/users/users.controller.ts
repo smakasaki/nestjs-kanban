@@ -34,6 +34,12 @@ export class UsersController {
       await this.columnsService.create({ name }, user._id);
     });
 
+    await Promise.all(
+      columnsNames.map((name) =>
+        this.columnsService.create({ name }, user._id),
+      ),
+    );
+
     return user;
   }
 
